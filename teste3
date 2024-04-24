@@ -1,0 +1,37 @@
+def eh_primo(numero):
+    if numero <= 1:
+        return False
+    for i in range(2, int(numero**0.5) + 1):
+        if numero % i == 0:
+            return False
+    return True
+
+contador = 0
+numero = 2
+while contador < 10:
+    if eh_primo(numero):
+        print(numero)
+        contador += 1
+    numero += 1
+########
+import random
+
+def main():
+    numero_sorteado = random.randint(1, 10)
+    tentativas = 3
+
+    print("Tente adivinhar o número sorteado (de 1 a 10). Você tem 3 chances!")
+
+    for i in range(tentativas):
+        tentativa = int(input("Tentativa {}: ".format(i + 1)))
+        if tentativa == numero_sorteado:
+            print("Parabéns! Você acertou o número!")
+            break
+        else:
+            if i < tentativas - 1:
+                print("Você errou. Tente novamente!")
+            else:
+                print("Você não acertou o número. O número sorteado era:", numero_sorteado)
+
+if __name__ == "__main__":
+    main()
