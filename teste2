@@ -1,0 +1,93 @@
+class MaquinaCafe:
+    def __init__(self):
+        self.cafe = 1000  # gramas
+        self.agua = 1000  # mililitros
+        self.leite = 1000  # mililitros
+        self.cappuccino = 1000  # gramas
+
+    def trocar_refil(self, ingrediente):
+        if ingrediente == 'cafe':
+            self.cafe = 1000
+        elif ingrediente == 'agua':
+            self.agua = 1000
+        elif ingrediente == 'leite':
+            self.leite = 1000
+        elif ingrediente == 'cappuccino':
+            self.cappuccino = 1000
+        else:
+            print("Ingrediente inválido!")
+
+    def consultar_quantidade(self, ingrediente):
+        if ingrediente == 'cafe':
+            return self.cafe
+        elif ingrediente == 'agua':
+            return self.agua
+        elif ingrediente == 'leite':
+            return self.leite
+        elif ingrediente == 'cappuccino':
+            return self.cappuccino
+        else:
+            print("Ingrediente inválido!")
+
+    def preparar_cafe(self, tipo, dinheiro):
+        if tipo == 'preto':
+            if self.cafe >= 15 and self.agua >= 250:
+                if dinheiro >= 1.0:
+                    print("CAFÉ PRONTO, RETIRE SUA BEBIDA!")
+                    return dinheiro - 1.0
+                else:
+                    print("DINHEIRO INSUFICIENTE, DINHEIRO DEVOLVIDO.")
+            else:
+                print("PRODUTO INDISPONÍVEL, DINHEIRO DEVOLVIDO.")
+        elif tipo == 'com leite':
+            if self.cafe >= 20 and self.leite >= 250:
+                if dinheiro >= 1.5:
+                    print("CAFÉ PRONTO, RETIRE SUA BEBIDA!")
+                    return dinheiro - 1.5
+                else:
+                    print("DINHEIRO INSUFICIENTE, DINHEIRO DEVOLVIDO.")
+            else:
+                print("PRODUTO INDISPONÍVEL, DINHEIRO DEVOLVIDO.")
+        elif tipo == 'cappuccino':
+            if self.cappuccino >= 40 and self.agua >= 300:
+                if dinheiro >= 2.0:
+                    print("CAFÉ PRONTO, RETIRE SUA BEBIDA!")
+                    return dinheiro - 2.0
+                else:
+                    print("DINHEIRO INSUFICIENTE, DINHEIRO DEVOLVIDO.")
+            else:
+                print("PRODUTO INDISPONÍVEL, DINHEIRO DEVOLVIDO.")
+        else:
+            print("Tipo de café inválido!")
+
+def main():
+    maquina = MaquinaCafe()
+
+    while True:
+        print("\n=== MENU ===")
+        print("a) Trocar refil")
+        print("b) Consultar quantidade de ingrediente")
+        print("c) Preparar café")
+        print("d) Desligar")
+        opcao = input("Escolha uma opção: ")
+
+        if opcao == 'a':
+            ingrediente = input("Digite o ingrediente para trocar o refil: ")
+            maquina.trocar_refil(ingrediente)
+        elif opcao == 'b':
+            ingrediente = input("Digite o ingrediente para consultar a quantidade: ")
+            print("Quantidade:", maquina.consultar_quantidade(ingrediente))
+        elif opcao == 'c':
+            tipo = input("Digite o tipo de café (preto, com leite ou cappuccino): ")
+            dinheiro = float(input("Digite o valor em dinheiro: "))
+            troco = maquina.preparar_cafe(tipo, dinheiro)
+            if troco is not None:
+                print("Troco:", troco)
+        elif opcao == 'd':
+            print("Máquina desligada.")
+            break
+        else:
+            print("Opção inválida!")
+
+if __name__ == "__main__":
+    main()
